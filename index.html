@@ -471,9 +471,8 @@ https://www.tjmt.jus.br/servicos/CertidaoInternet
 <div class="sig-block">
 <div class="sig-line">Amparo HAZAQ - Coordenação</div>
 </div>
-</div>
-</div>
 
+</div>
 <button type="button" class="whatsapp-btn" onclick="enviarWhatsApp()">
 Enviar Termo pelo WhatsApp
 </button>
@@ -489,7 +488,7 @@ return campo ? campo.value.trim() : "";
 const nome = pegar("nome");
 const cpf = pegar("cpf");
 const rg = pegar("rg");
-const nascimentoRaw = pegar("nascimento");
+const nascimento = pegar("nascimento");
 const registro = pegar("registro");
 const nacionalidade = pegar("nacionalidade");
 const estadoCivil = pegar("estado-civil");
@@ -498,13 +497,8 @@ const cidade = pegar("cidade");
 const telefone = pegar("telefone");
 const email = pegar("email");
 
-let nascimento = nascimentoRaw;
-if (nascimentoRaw.includes("-")) {
-const partes = nascimentoRaw.split("-");
-nascimento = ${partes[2]}/${partes[1]}/${partes[0]};
-}
-
 let areas = [];
+
 document.querySelectorAll(".grid-table input[type='checkbox']").forEach(function(check) {
 if (check.checked) {
 areas.push(check.parentElement.innerText.trim());
@@ -513,6 +507,7 @@ areas.push(check.parentElement.innerText.trim());
 
 const mensagem =
 "TERMO DE ADESÃO - AMPARO HAZAQ\n\n" +
+
 "Nome Completo:\n" + nome + "\n\n" +
 "CPF:\n" + cpf + "\n\n" +
 "RG:\n" + rg + "\n\n" +
@@ -524,7 +519,7 @@ const mensagem =
 "Cidade/UF:\n" + cidade + "\n\n" +
 "Telefone / WhatsApp:\n" + telefone + "\n\n" +
 "E-mail:\n" + email + "\n\n" +
-"Áreas de Atuação:\n" + (areas.length > 0 ? areas.join(", ") : "Nenhuma selecionada");
+"Áreas de Atuação:\n" + areas.join("\n");
 
 const numero = "5566984666186";
 
@@ -532,6 +527,7 @@ window.open(
 "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensagem),
 "_blank"
 );
+
 }
 </script>
 
